@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,20 +15,32 @@ import business.Socio;
 public class DatosSociosTest {
 	
 	private List<Socio> socios;
+	private DatosSocios datos;
 	
 	@Before
 	public void setUp() {
 		socios = new ArrayList<Socio>();
-		socios.add(new Socio("Mauro", 25, "Newells", "Soltero", "Universitario"));
-		socios.add(new Socio("Fernando", 51, "River", "Casado", "Terciario"));
-		socios.add(new Socio("Alejando", 39, "Racing", "Casado", "Secundario"));
+		socios.add(new Socio("Martín",46,"River","Casado","Terciario"));
+		socios.add(new Socio("Daniel",38,"River","Casado","Terciario"));
+		socios.add(new Socio("Daniel",31,"Racing","Soltero","Universitario"));
+		socios.add(new Socio("Matías",38,"Huracán","Soltero","Universitario"));
+		socios.add(new Socio("Juan",50,"Racing","Casado","Terciario"));
+		socios.add(new Socio("Santiago",56,"Boca","Casado","Secundario"));
+		socios.add(new Socio("Martín",37,"River","Casado","Terciario"));
+		socios.add(new Socio("Alejo",67,"River","Soltero","Secundario"));
+		socios.add(new Socio("Federico",31,"Estudiantes","Casado","Universitario"));
+		socios.add(new Socio("Anibal",22,"Boca","Casado","Universitario"));
+		socios.add(new Socio("Marcelo",37,"Racing","Soltero","Terciario"));
+		socios.add(new Socio("Alejo",24,"River","Soltero","Universitario"));
+		socios.add(new Socio("Alejo",47,"River","Casado","Terciario"));
 		
+		datos = new DatosSocios(socios);
 	}
 	
 	@Test
 	public void cantidadPersonasTest() {
-		DatosSocios datos = new DatosSocios(socios);
-		assertEquals(3, datos.cantSocios());
+		
+		assertEquals(13, datos.cantSocios());
 	}
 	
 	@Test
@@ -38,23 +51,26 @@ public class DatosSociosTest {
 	
 	@Test
 	public void promedioEdadSociosRacingTest() {
-		DatosSocios datos = new DatosSocios(socios);
-		assertEquals(39, datos.promedioEdadSociosRacing());
+		assertEquals(39,3, datos.promedioEdadSociosRacing());
 	}
-	/*
+	
 	@Test
 	public void sociosCasadosEnOrdenTest() {
-		List<Socio> socios = new ArrayList<Socio>();
-		socios.add(new Socio("Mauro", 25, "Newells", "Soltero", "Universitario"));
-		socios.add(new Socio("Fernando", 51, "River", "Casado", "Terciario"));
-		socios.add(new Socio("Alejando", 39, "Racing", "Casado", "Secundario"));
-	
 		List<Socio> expected = new ArrayList<Socio>();
-		expected.add(new Socio("Alejando", 39, "Racing", "Casado", "Secundario"));
-		expected.add(new Socio("Fernando", 51, "River", "Casado", "Terciario"));
+		expected.add(new Socio("Anibal",22,"Boca","Casado","Universitario"));
+		expected.add(new Socio("Federico",31,"Estudiantes","Casado","Universitario"));
+		
+		Assert.assertArrayEquals(expected.toArray(),datos.universitariosCasadosEnOrden().toArray());
+	}
 	
-		DatosSocios datos = new DatosSocios(socios);
-		assertEquals(expected, datos.sociosCasadosEnOrden());
+	/*@Test
+	public void CincoNombresComunesRiver() {
+		List<String> expected = new ArrayList<String>();
+		expected.add("Alejo");
+		expected.add("Martin");
+		expected.add("Daniel");
+		Assert.assertArrayEquals(expected.toArray(), datos.CincoNombresComunesRiver().toArray());
 	}
 	*/
+	
 }
