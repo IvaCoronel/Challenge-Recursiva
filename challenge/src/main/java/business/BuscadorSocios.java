@@ -8,11 +8,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class DatosSocios {
+import models.Socio;
+
+public class BuscadorSocios {
 	private List<Socio> socios;
 	
 	
-	public DatosSocios(List<Socio> socios){
+	public BuscadorSocios(List<Socio> socios){
 		this.socios= socios;
 	}
 	
@@ -20,17 +22,8 @@ public class DatosSocios {
 		return socios.size();
 	}
 
-	public double promedioEdadSociosRacing() {
-		ArrayList<Socio> sociosRacing=new ArrayList<Socio>();
-		int edades= 0;
-		int cont=0;
-		for(Socio socio: socios){
-			if (socio.getEquipo().equals("Racing")){
-				edades= edades + socio.getEdad();
-				cont++;
-			}		
-		}
-		return edades/cont;
+	public String promedioEdadSociosRacing() {
+		return String.format("%.1f",promedioEdadSociosEquipo("Racing") );
 	}
 
 	public List<Socio> universitariosCasadosEnOrden() {
@@ -67,7 +60,7 @@ public class DatosSocios {
 		nombresRiver= ordenarPorValue(nombresComunes);
 		
 		int i=1;
-		while(i <nombresRiver.size()+1 && i<7){
+		while(i <nombresRiver.size()+1 && i<6){
 			cincoNombres.add(nombresRiver.get(nombresRiver.size()-i).getKey());
 			i++;
 		}
@@ -86,17 +79,15 @@ public class DatosSocios {
 		return nombresRiver;
 	}
 	
-	public List<ArrayList<String>> sociosPorEquipo(){
+	public List<ArrayList<String>> estadisticasEquipo(){
 		Map<String,Integer> cantSociosEquipo= new HashMap<String,Integer>();
 		List<Map.Entry<String, Integer>> cantSociosOrdenada = new LinkedList<Map.Entry<String, Integer>>();
 		List<ArrayList<String>> promedioEdadMinMax=new ArrayList<ArrayList<String>>();
-		
 		double promedio = 0;
+		
 		for(Socio socio: socios){
-			
 			if(cantSociosEquipo.containsKey(socio.getEquipo())){
 				cantSociosEquipo.put(socio.getEquipo(),cantSociosEquipo.get(socio.getEquipo())+1);
-				
 			}
 			else{
 				cantSociosEquipo.put(socio.getEquipo(), 1);
@@ -111,7 +102,6 @@ public class DatosSocios {
 			equipo.add(cantSociosOrdenada.get(i).getKey()); // agrego equipo
 			equipo.add(String.valueOf(cantSociosOrdenada.get(i).getValue())); //agrego cant socios
 			
-			
 			promedio= promedioEdadSociosEquipo(cantSociosOrdenada.get(i).getKey());
 			equipo.add(String.format("%.1f", promedio));   // agrego promedio
 			
@@ -121,7 +111,6 @@ public class DatosSocios {
 			
 			promedioEdadMinMax.add((ArrayList<String>) equipo);
 		}
-		
 		Collections.reverse(promedioEdadMinMax);
 		
 		return promedioEdadMinMax;
@@ -147,7 +136,6 @@ public class DatosSocios {
 	}
 
 	private double promedioEdadSociosEquipo(String equipo) {
-		ArrayList<Socio> sociosEquipo=new ArrayList<Socio>();
 		double edades= 0;
 		int cont=0;
 		for(Socio socio: socios){

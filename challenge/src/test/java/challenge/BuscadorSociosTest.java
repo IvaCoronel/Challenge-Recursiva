@@ -10,13 +10,13 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import business.DatosSocios;
-import business.Socio;
+import business.BuscadorSocios;
+import models.Socio;
 
-public class DatosSociosTest {
+public class BuscadorSociosTest {
 	
 	private List<Socio> socios;
-	private DatosSocios datos;
+	private BuscadorSocios datos;
 	
 	@Before
 	public void setUp() {
@@ -34,28 +34,27 @@ public class DatosSociosTest {
 		socios.add(new Socio("Alejo",24,"River","Soltero","Universitario"));
 		socios.add(new Socio("Alejo",47,"River","Casado","Terciario"));
 		
-		datos = new DatosSocios(socios);
+		datos = new BuscadorSocios(socios);
 	}
 	
 	@Test
 	public void cantidadPersonasTest() {
-		
 		assertEquals(12, datos.cantSocios());
 	}
 	
 	@Test
 	public void cantidadPersonasVacioTest() {
-		DatosSocios datos = new DatosSocios(new ArrayList<Socio>());
+		BuscadorSocios datos = new BuscadorSocios(new ArrayList<Socio>());
 		assertEquals(0, datos.cantSocios());
 	}
 	
 	@Test
 	public void promedioEdadSociosRacingTest() {
-		assertEquals(39,3, datos.promedioEdadSociosRacing());
+		assertEquals("39,3", datos.promedioEdadSociosRacing());
 	}
 	
 	@Test
-	public void sociosCasadosEnOrdenTest() {
+	public void  universitariosCasadosEnOrdenTest() {
 		List<Socio> expected = new ArrayList<Socio>();
 		expected.add(new Socio("Anibal",22,"Boca","Casado","Universitario"));
 		expected.add(new Socio("Federico",31,"Estudiantes","Casado","Universitario"));
@@ -73,7 +72,7 @@ public class DatosSociosTest {
 		Assert.assertArrayEquals(expected.toArray(), datos.cincoNombresComunesRiver().toArray());
 	}
 	@Test
-	public void SociosPorEquipo() {
+	public void sociosPorEquipo() {
 		List<ArrayList<String>> expected = new ArrayList<ArrayList<String>>();
 		List<String> equipo1= new ArrayList<String>(Arrays.asList("River","6","43,2","24","67"));
 		List<String> equipo2= new ArrayList<String>(Arrays.asList("Racing","3","39,3","31","50"));
@@ -84,7 +83,7 @@ public class DatosSociosTest {
 		expected.add((ArrayList<String>) equipo3);
 		expected.add((ArrayList<String>) equipo4);
 		
-		Assert.assertArrayEquals(expected.toArray(),datos.sociosPorEquipo().toArray());
+		Assert.assertArrayEquals(expected.toArray(),datos.estadisticasEquipo().toArray());
 	}
 	
 	
