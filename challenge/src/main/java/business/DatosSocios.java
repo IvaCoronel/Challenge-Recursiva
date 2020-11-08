@@ -101,7 +101,7 @@ public class DatosSocios {
 			}
 		}
 		cantSociosOrdenada= ordenarPorValue(cantSociosEquipo);
-		System.out.println(cantSociosOrdenada);
+		
 		
 		
 		return null;
