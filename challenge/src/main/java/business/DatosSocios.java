@@ -11,6 +11,7 @@ import java.util.Map;
 public class DatosSocios {
 	private List<Socio> socios;
 	
+	
 	public DatosSocios(List<Socio> socios){
 		this.socios= socios;
 	}
@@ -22,17 +23,14 @@ public class DatosSocios {
 	public double promedioEdadSociosRacing() {
 		ArrayList<Socio> sociosRacing=new ArrayList<Socio>();
 		int edades= 0;
-		double promedioEdad= 0;
+		int cont=0;
 		for(Socio socio: socios){
 			if (socio.getEquipo().equals("Racing")){
-				sociosRacing.add(socio);
+				edades= edades + socio.getEdad();
+				cont++;
 			}		
 		}
-		for(Socio racing: sociosRacing){
-			edades= edades + racing.getEdad();
-		}
-		promedioEdad= edades/sociosRacing.size();
-		return promedioEdad;
+		return edades/cont;
 	}
 
 	public List<Socio> universitariosCasadosEnOrden() {
@@ -91,10 +89,14 @@ public class DatosSocios {
 	public List<ArrayList<String>> sociosPorEquipo(){
 		Map<String,Integer> cantSociosEquipo= new HashMap<String,Integer>();
 		List<Map.Entry<String, Integer>> cantSociosOrdenada = new LinkedList<Map.Entry<String, Integer>>();
+		List<ArrayList<String>> promedioEdadMinMax=new ArrayList<ArrayList<String>>();
+		
+		double promedio = 0;
 		for(Socio socio: socios){
 			
 			if(cantSociosEquipo.containsKey(socio.getEquipo())){
 				cantSociosEquipo.put(socio.getEquipo(),cantSociosEquipo.get(socio.getEquipo())+1);
+				
 			}
 			else{
 				cantSociosEquipo.put(socio.getEquipo(), 1);
@@ -102,11 +104,59 @@ public class DatosSocios {
 		}
 		cantSociosOrdenada= ordenarPorValue(cantSociosEquipo);
 		
+		for(int i=0; i<cantSociosOrdenada.size();i++){
+			List<String> equipo= new ArrayList<String>();
+			List<String> minMax= new ArrayList<String>();
 		
+			equipo.add(cantSociosOrdenada.get(i).getKey()); // agrego equipo
+			equipo.add(String.valueOf(cantSociosOrdenada.get(i).getValue())); //agrego cant socios
+			
+			
+			promedio= promedioEdadSociosEquipo(cantSociosOrdenada.get(i).getKey());
+			equipo.add(String.format("%.1f", promedio));   // agrego promedio
+			
+			minMax= edadMinMax(cantSociosOrdenada.get(i).getKey());
+			equipo.add(minMax.get(0)); //agrego edad minima
+			equipo.add(minMax.get(1)); //agrego edad maxima
+			
+			promedioEdadMinMax.add((ArrayList<String>) equipo);
+		}
 		
-		return null;
+		Collections.reverse(promedioEdadMinMax);
+		
+		return promedioEdadMinMax;
 	}
 	
+	private List<String> edadMinMax(String equipo) {
+		int min=Integer.MAX_VALUE;
+		int max=Integer.MIN_VALUE;
+		for(Socio socio: socios){
+			if(socio.getEquipo().equals(equipo)){
+				if(socio.getEdad()<min){
+					min=socio.getEdad();
+				}
+				if (socio.getEdad()>max){
+					max=socio.getEdad();
+				}
+			}
+		}
+		List<String> minMax= new ArrayList<String>();
+		minMax.add(String.valueOf(min));
+		minMax.add(String.valueOf(max));
+		return minMax;
+	}
 
+	private double promedioEdadSociosEquipo(String equipo) {
+		ArrayList<Socio> sociosEquipo=new ArrayList<Socio>();
+		double edades= 0;
+		int cont=0;
+		for(Socio socio: socios){
+			if (socio.getEquipo().equals(equipo)){
+				edades= edades + socio.getEdad();
+				cont++;
+			}		
+		}
+		return edades/cont;
+	}
 
 }
