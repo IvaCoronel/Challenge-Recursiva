@@ -89,8 +89,8 @@ public class DatosSociosTest {
 		expected.add((ArrayList<String>) equipo5);
 		
 		
-		Assert.assertArrayEquals(expected.toArray(),datos.SociosPorEquipo().toArray());
+		Assert.assertArrayEquals(expected.toArray(),datos.sociosPorEquipo().toArray());
 	}
-	
 	*/
+	
 }

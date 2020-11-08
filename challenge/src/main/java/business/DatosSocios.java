@@ -35,7 +35,6 @@ public class DatosSocios {
 		return promedioEdad;
 	}
 
-	
 	public List<Socio> universitariosCasadosEnOrden() {
 		ArrayList<Socio> universitariosCasados= new ArrayList <Socio>();
 		for(Socio socio: socios){
@@ -77,7 +76,6 @@ public class DatosSocios {
 		return cincoNombres;
 	}
 	
-	
 	private List<Map.Entry<String, Integer>> ordenarPorValue(Map<String,Integer> ordenada){
 		List<Map.Entry<String, Integer>> nombresRiver = new LinkedList<Map.Entry<String, Integer>>(ordenada.entrySet()); 
 		Collections.sort(nombresRiver, new Comparator<Map.Entry<String, Integer> >() { 
@@ -94,14 +92,17 @@ public class DatosSocios {
 		Map<String,Integer> cantSociosEquipo= new HashMap<String,Integer>();
 		List<Map.Entry<String, Integer>> cantSociosOrdenada = new LinkedList<Map.Entry<String, Integer>>();
 		for(Socio socio: socios){
+			
 			if(cantSociosEquipo.containsKey(socio.getEquipo())){
 				cantSociosEquipo.put(socio.getEquipo(),cantSociosEquipo.get(socio.getEquipo())+1);
 			}
 			else{
-				cantSociosEquipo.put(socio.getNombre(), 1);
+				cantSociosEquipo.put(socio.getEquipo(), 1);
 			}
 		}
 		cantSociosOrdenada= ordenarPorValue(cantSociosEquipo);
+		System.out.println(cantSociosOrdenada);
+		
 		
 		return null;
 	}
