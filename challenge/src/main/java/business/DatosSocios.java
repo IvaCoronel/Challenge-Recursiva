@@ -78,8 +78,8 @@ public class DatosSocios {
 	}
 	
 	
-	private List<Map.Entry<String, Integer> >  ordenarPorValue(Map<String,Integer> ordenada){
-		List<Map.Entry<String, Integer> > nombresRiver = new LinkedList<Map.Entry<String, Integer> >(ordenada.entrySet()); 
+	private List<Map.Entry<String, Integer>> ordenarPorValue(Map<String,Integer> ordenada){
+		List<Map.Entry<String, Integer>> nombresRiver = new LinkedList<Map.Entry<String, Integer>>(ordenada.entrySet()); 
 		Collections.sort(nombresRiver, new Comparator<Map.Entry<String, Integer> >() { 
 	            public int compare(Map.Entry<String, Integer> o1,  
 	                               Map.Entry<String, Integer> o2) 
@@ -89,7 +89,6 @@ public class DatosSocios {
 	    }); 
 		return nombresRiver;
 	}
-	
 	
 	public List<ArrayList<String>> sociosPorEquipo(){
 		Map<String,Integer> cantSociosEquipo= new HashMap<String,Integer>();
@@ -103,6 +102,7 @@ public class DatosSocios {
 			}
 		}
 		cantSociosOrdenada= ordenarPorValue(cantSociosEquipo);
+		
 		return null;
 	}
 	
