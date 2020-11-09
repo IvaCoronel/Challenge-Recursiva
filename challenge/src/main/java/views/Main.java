@@ -25,7 +25,7 @@ public class Main {
 	
 	public static void imprimirCincoNombresRiver(List<String> nombres){
 		System.out.println(" ");
-		System.out.println("Los cinco nombres más comunes entre los socios de River son: ");
+		System.out.println("Los cinco nombres mï¿½s comunes entre los socios de River son: ");
 		for (int i=0; i<nombres.size();i++){
 			System.out.println(i+1 + "-" + nombres.get(i));
 		}
@@ -36,17 +36,17 @@ public class Main {
 		System.out.println("Estos son los socios con estudios Universitarios y Casados: ");
 		System.out.println("______________________________________________________________________________________");
 		for(Socio s: socios){
-			System.out.println(" • Nombre: "+ s.getNombre() + ", Edad: " + s.getEdad() + ", Equipo: " + s.getEquipo()); 
+			System.out.println(" ï¿½ Nombre: "+ s.getNombre() + ", Edad: " + s.getEdad() + ", Equipo: " + s.getEquipo()); 
 			System.out.println("-----------------------------------------------------------------------------------");
 		}
 
 	}
 	
 	public static void imprimirEstadisticasEquipo(List<ArrayList<String>> equipos){
-		System.out.println("Equipos ordenados de mayor a menor según la cantidad de socios: ");
+		System.out.println("Equipos ordenados de mayor a menor segï¿½n la cantidad de socios: ");
 		System.out.println("___________________________________________________________________________________________________________________________________________________________________");
 		for(ArrayList<String> e: equipos){
-			System.out.println(" • Equipo: " + e.get(0)+ ", Cantidad de Socios: " + e.get(1) + ", Promedio de edad entre los Socios: " + e.get(2) + ", Edad mínima: " + e.get(3) + ", Edad máxima: " + e.get(4));
+			System.out.println(" ï¿½ Equipo: " + e.get(0)+ ", Cantidad de Socios: " + e.get(1) + ", Promedio de edad entre los Socios: " + e.get(2) + ", Edad mï¿½nima: " + e.get(3) + ", Edad mï¿½xima: " + e.get(4));
 			System.out.println("------------------------------------------------------------------------------------------------------------------------");
 		 }
 	}
@@ -56,18 +56,17 @@ public class Main {
 		System.out.println("----------------------------------------------------------------------------------------------");
 		System.out.println("1- Cantidad de Socios");
 		System.out.println("2- Promedio de edad de los socios de Racing");
-		System.out.println("3- Los cinco nombres más comunes entre los socios de River");
+		System.out.println("3- Los cinco nombres mï¿½s comunes entre los socios de River");
 		System.out.println("4- Lista de socios Universitarios y casados");
-		System.out.println("5- Lista ordenada por Equipos (según cantidad de socios), promedio de edad, edad Máx y Min.");
+		System.out.println("5- Lista ordenada por Equipos (segï¿½n cantidad de socios), promedio de edad, edad Mï¿½x y Min.");
 		System.out.println("6- Salir");
 		System.out.println("----------------------------------------------------------------------------------------------");
-		System.out.println("Ingrese el número de la opcion que desee: ");
+		System.out.println("Ingrese el nï¿½mero de la opcion que desee: ");
 	}
 
 	public static void main(String[] args) throws Exception {
-		String path = System.getProperty("user.dir");
-		String file = "/resources/socios.csv";
-		LectorCSVSocios lector =  new LectorCSVSocios(path+file);
+		String file = "../resources/socios.csv";
+		LectorCSVSocios lector =  new LectorCSVSocios(file);
 		List<Socio> socios = lector.leerSocios();
 		BuscadorSocios buscador = new BuscadorSocios(socios);
 		
