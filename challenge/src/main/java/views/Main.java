@@ -65,8 +65,9 @@ public class Main {
 	}
 
 	public static void main(String[] args) throws Exception {
-		String file = "../resources/socios.csv";
-		LectorCSVSocios lector =  new LectorCSVSocios(file);
+		String path = System.getProperty("user.dir");
+		String file = "/resources/socios.csv";
+		LectorCSVSocios lector =  new LectorCSVSocios(path+file);
 		List<Socio> socios = lector.leerSocios();
 		BuscadorSocios buscador = new BuscadorSocios(socios);
 		
