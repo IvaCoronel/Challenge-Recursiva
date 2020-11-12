@@ -1,7 +1,7 @@
 # Challenge-recursiva
 ## Superliga
 
-El challenge consiste en leer un  archivo.csv , el cual contiene informacion sobre los socios de la superliga, y aplicarle ciertos métodos para poder filtrar información.
+El challenge consiste en leer un  archivo.csv , el cual contiene información sobre los socios de la superliga, y aplicarle ciertos métodos para poder filtrar esa información.
 
 ## Instalación:
 
